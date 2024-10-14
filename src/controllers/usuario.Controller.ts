@@ -1,8 +1,14 @@
 import { Request, Response } from "express";
-import { createUsuarioService, getAllUsuariosService, updateUsuarioService, deleteUsuarioService, getUsuarioByIdService } from "../services/usuario.service";
+import {
+  createUsuarioService,
+  getAllUsuariosService,
+  updateUsuarioService,
+  deleteUsuarioService,
+  getUsuarioByIdService
+} from "../services/usuario.service";
 import { validationResult } from "express-validator";
 
-
+// Define a interface para o corpo da requisição de criação de usuário
 interface CreateUserRequestBody {
   name: string;
   email: string;
@@ -10,8 +16,7 @@ interface CreateUserRequestBody {
   password: string;
 }
 
-
-// Cria um novo usuário
+// Controlador para criar um novo usuário
 export const createUserController = async (req: Request, res: Response): Promise<void> => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
@@ -19,7 +24,9 @@ export const createUserController = async (req: Request, res: Response): Promise
     return;
   }
 
-  const body = req.body as unknown;
+  const body = req.body as CreateUserRequestBody;
+
+  // Validação básica da estrutura do corpo da requisição
   if (!isValidCreateUserBody(body)) {
     res.status(400).json({ message: "Estrutura do corpo da requisição inválida." });
     return;
@@ -36,7 +43,7 @@ export const createUserController = async (req: Request, res: Response): Promise
   }
 };
 
-// Pega todos os usuários
+// Controlador para pegar todos os usuários
 export const getAllUsersController = async (req: Request, res: Response): Promise<void> => {
   try {
     const usuarios = await getAllUsuariosService();
@@ -47,11 +54,12 @@ export const getAllUsersController = async (req: Request, res: Response): Promis
   }
 };
 
+// Controlador para pegar um usuário pelo ID
 export const getUserByIdController = async (req: Request, res: Response): Promise<void> => {
-  const { id } = req.params; // Pega o ID dos parâmetros da rota
+  const { id } = req.params;
 
   try {
-    const usuario = await getUsuarioByIdService(id); // Chama o serviço para buscar o usuário pelo ID
+    const usuario = await getUsuarioByIdService(id);
     if (!usuario) {
       res.status(404).json({ message: "Usuário não encontrado." });
       return;
@@ -63,7 +71,7 @@ export const getUserByIdController = async (req: Request, res: Response): Promis
   }
 };
 
-// Atualiza um usuário
+// Controlador para atualizar um usuário
 export const updateUserController = async (req: Request, res: Response): Promise<void> => {
   const { id } = req.params;
   const { name, email, cpf, password } = req.body;
@@ -81,7 +89,7 @@ export const updateUserController = async (req: Request, res: Response): Promise
   }
 };
 
-// Deleta um usuário
+// Controlador para deletar um usuário
 export const deleteUserController = async (req: Request, res: Response): Promise<void> => {
   const { id } = req.params;
 

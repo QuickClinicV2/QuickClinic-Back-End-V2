@@ -1,30 +1,43 @@
 import express from "express";
 import usuarioRoutes from "./routes/usuario.routes";
 import dotenv from "dotenv";
-import cors from "cors"; // Para habilitar CORS
-import morgan from "morgan"; // Logger HTTP
+import cors from "cors";
+import morgan from "morgan";
+import database from './config/database'; // Import database connection
 
-dotenv.config(); // Carrega variáveis de ambiente
+dotenv.config();
 
 const app = express();
 
-// Middleware para habilitar CORS (opcional, mas recomendado se você vai expor a API publicamente)
+// Middleware setup
 app.use(cors());
-
-// Logger HTTP
 app.use(morgan('dev'));
-
-// Init Middleware para interpretar JSON no corpo das requisições
 app.use(express.json());
 
-// Use Rotas
+// Routes
 app.use("/api", usuarioRoutes);
 
-// Middleware para tratamento de erros (básico)
+// Error handling middleware
 app.use((err: Error, req: express.Request, res: express.Response, next: express.NextFunction) => {
-  console.error(err.stack);
-  res.status(500).json({ message: "Something went wrong!" });
+    console.error(err.stack);
+    res.status(500).json({ message: "Something went wrong!" });
 });
 
+// Start the server
 const port = process.env.PORT || 5000;
-app.listen(port, () => console.log(`Server running on port ${port}`));
+app.listen(port, () => {
+    console.log(`Server running on port ${port}`);
+    // Ensure the database connection is established
+    database.connection.authenticate()
+        .then(() => {
+            console.log('Database connection established successfully.');
+        })
+        .catch((error: Error) => {
+            console.error('Unable to connect to the database:', error);
+        });
+});
+
+/*database.connection.sync({ force: false }) // Set force: true to drop existing tables and recreate them
+    .then(() => {
+        console.log('Database & tables created!');
+});*/
