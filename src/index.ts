@@ -1,9 +1,12 @@
 import express from "express";
-import usuarioRoutes from "./routes/usuario.routes";
 import dotenv from "dotenv";
 import cors from "cors";
 import morgan from "morgan";
 import database from './config/database'; // Import database connection
+import usuarioRoutes from "./routes/usuario.routes";
+import ubsRoutes from "./routes/ubs.routes";
+import medicoRoutes from './routes/medico.routes';
+import especializacaoRoutes from "./routes/especializacao.routes"
 
 dotenv.config();
 
@@ -16,6 +19,10 @@ app.use(express.json());
 
 // Routes
 app.use("/api", usuarioRoutes);
+app.use("/api", ubsRoutes);
+app.use("/api", medicoRoutes);
+app.use("/api", especializacaoRoutes)
+
 
 // Error handling middleware
 app.use((err: Error, req: express.Request, res: express.Response, next: express.NextFunction) => {
