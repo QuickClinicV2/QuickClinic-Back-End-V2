@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { createEspecializacaoService, getAllEspecializacoesService } from '../services/especializacao.service';
+import { createEspecializacaoService, getAllEspecializacoesService } from '../services/especializacao.Service';
 
 // Controlador para criar uma nova especialização
 export const createEspecializacaoController = async (req: Request, res: Response): Promise<void> => {

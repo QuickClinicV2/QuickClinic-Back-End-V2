@@ -14,14 +14,14 @@ export const initEspecializacaoModel = (sequelize: Sequelize) => {
         },
     }, {
         sequelize,
-        modelName: 'Especializacao',
+        modelName: 'especializacao',
     });
 
     // Inicializa o modelo Medico e obtém a classe
     const Medico = initMedicoModel(sequelize); 
 
     // Associa a Especializacao ao Medico
-    Especializacao.belongsToMany(Medico, { through: 'MedicoEspecializacoes' });
+    Especializacao.belongsToMany(Medico, { through: 'medicoEspecializacoes' });
     
     return Especializacao; // Retorna a classe Especializacao
 };

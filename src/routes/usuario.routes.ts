@@ -1,6 +1,13 @@
 import { Router } from "express";
 import { check } from "express-validator";
-import { createUserController, getAllUsersController, getUserByIdController, updateUserController, deleteUserController } from "../controllers/usuario.Controller";
+import {
+  createUserController,
+  getAllUsersController,
+  getUserByIdController,
+  updateUserController,
+  deleteUserController,
+} from "../controllers/usuario.Controller";
+
 
 const router = Router();
 
@@ -8,7 +15,7 @@ const router = Router();
 router.post(
   "/usuario",
   [
-    check("name").notEmpty().withMessage("O nome é obrigatório"),
+    check("nome").notEmpty().withMessage("O nome é obrigatório"),
     check("email").isEmail().withMessage("O email deve ser válido"),
     check("cpf").notEmpty().withMessage("O CPF é obrigatório"),
     check("password").isLength({ min: 6 }).withMessage("A senha deve ter pelo menos 6 caracteres"),
@@ -26,7 +33,7 @@ router.get("/usuario/:id", getUserByIdController);
 router.put(
   "/usuario/:id",
   [
-    check("name").optional().notEmpty().withMessage("O nome é obrigatório se fornecido"),
+    check("nome").optional().notEmpty().withMessage("O nome é obrigatório se fornecido"),
     check("email").optional().isEmail().withMessage("O email deve ser válido se fornecido"),
     check("cpf").optional().notEmpty().withMessage("O CPF é obrigatório se fornecido"),
     check("password").optional().isLength({ min: 6 }).withMessage("A senha deve ter pelo menos 6 caracteres se fornecida"),

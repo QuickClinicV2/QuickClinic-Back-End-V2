@@ -2,11 +2,15 @@ import express from "express";
 import dotenv from "dotenv";
 import cors from "cors";
 import morgan from "morgan";
-import database from './config/database'; // Import database connection
-import usuarioRoutes from "./routes/usuario.routes";
-import ubsRoutes from "./routes/ubs.routes";
-import medicoRoutes from './routes/medico.routes';
-import especializacaoRoutes from "./routes/especializacao.routes"
+ // Import database connection
+import database from './config/database';
+ // Import routes
+import usuarioRoutes from "./routes/usuario.Routes";
+import ubsRoutes from "./routes/ubs.Routes";
+import medicoRoutes from './routes/medico.Routes';
+import especializacaoRoutes from "./routes/especializacao.Routes"
+import agendamentoRoutes from "./routes/agendamento.Routes";
+import agendamentoViagensRoutes from "./routes/agendamentoViagens.Routes";
 
 dotenv.config();
 
@@ -22,6 +26,8 @@ app.use("/api", usuarioRoutes);
 app.use("/api", ubsRoutes);
 app.use("/api", medicoRoutes);
 app.use("/api", especializacaoRoutes)
+app.use("/api", agendamentoRoutes);
+app.use("/api", agendamentoViagensRoutes);
 
 
 // Error handling middleware

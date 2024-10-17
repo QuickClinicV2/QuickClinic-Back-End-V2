@@ -5,14 +5,16 @@ import {
   updateUsuarioService,
   deleteUsuarioService,
   getUsuarioByIdService
-} from "../services/usuario.service";
+} from "../services/usuario.Service";
 import { validationResult } from "express-validator";
 
-// Define a interface para o corpo da requisição de criação de usuário
+// Interface para o corpo da requisição de criação de usuário
 interface CreateUserRequestBody {
-  name: string;
+  nome: string;
   email: string;
   cpf: string;
+  numeroSus: string;
+  dataNascimento: string; // Alterado para string (data geralmente vem como string via HTTP)
   password: string;
 }
 
@@ -26,16 +28,23 @@ export const createUserController = async (req: Request, res: Response): Promise
 
   const body = req.body as CreateUserRequestBody;
 
-  // Validação básica da estrutura do corpo da requisição
   if (!isValidCreateUserBody(body)) {
     res.status(400).json({ message: "Estrutura do corpo da requisição inválida." });
     return;
   }
 
-  const { name, email, cpf, password } = body;
+  const { nome, email, cpf, numeroSus, dataNascimento, password } = body;
 
   try {
-    const usuario = await createUsuarioService({ name, email, cpf, password });
+    // Convertendo dataNascimento para Date
+    const usuario = await createUsuarioService({
+      nome,
+      email,
+      cpf,
+      numeroSus,
+      dataNascimento: new Date(dataNascimento),
+      password
+    });
     res.status(201).json({ message: "Usuário criado com sucesso", data: usuario });
   } catch (error: unknown) {
     const errorMessage = error instanceof Error ? error.message : "Erro desconhecido";
@@ -43,7 +52,7 @@ export const createUserController = async (req: Request, res: Response): Promise
   }
 };
 
-// Controlador para pegar todos os usuários
+// Controlador para buscar todos os usuários
 export const getAllUsersController = async (req: Request, res: Response): Promise<void> => {
   try {
     const usuarios = await getAllUsuariosService();
@@ -54,7 +63,7 @@ export const getAllUsersController = async (req: Request, res: Response): Promis
   }
 };
 
-// Controlador para pegar um usuário pelo ID
+// Controlador para buscar um usuário por ID
 export const getUserByIdController = async (req: Request, res: Response): Promise<void> => {
   const { id } = req.params;
 
@@ -74,10 +83,17 @@ export const getUserByIdController = async (req: Request, res: Response): Promis
 // Controlador para atualizar um usuário
 export const updateUserController = async (req: Request, res: Response): Promise<void> => {
   const { id } = req.params;
-  const { name, email, cpf, password } = req.body;
+  const { nome, email, cpf, numeroSus, dataNascimento, password } = req.body;
 
   try {
-    const updatedUser = await updateUsuarioService(id, { name, email, cpf, password });
+    const updatedUser = await updateUsuarioService(id, {
+      nome,
+      email,
+      cpf,
+      numeroSus,
+      dataNascimento: new Date(dataNascimento), // Convertendo data para Date
+      password
+    });
     if (!updatedUser) {
       res.status(404).json({ message: "Usuário não encontrado." });
       return;
@@ -106,14 +122,16 @@ export const deleteUserController = async (req: Request, res: Response): Promise
   }
 };
 
-// Função para validar corpo de criação de usuário
+// Validação do corpo da requisição
 function isValidCreateUserBody(body: any): body is CreateUserRequestBody {
   return (
     typeof body === "object" &&
     body !== null &&
-    typeof body.name === "string" &&
+    typeof body.nome === "string" &&
     typeof body.email === "string" &&
     typeof body.cpf === "string" &&
+    typeof body.numeroSus === "string" &&
+    !isNaN(Date.parse(body.dataNascimento)) && // Valida se a string pode ser convertida para uma data válida
     typeof body.password === "string"
   );
 }

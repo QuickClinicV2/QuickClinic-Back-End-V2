@@ -5,7 +5,7 @@ import {
   updateUbsService,
   deleteUbsService,
   getUbsByIdService
-} from "../services/ubs.service";
+} from "../services/ubs.Service";
 import { validationResult } from "express-validator";
 
 // Interface para a criação de UBS

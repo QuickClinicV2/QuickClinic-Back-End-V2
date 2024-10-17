@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { createEspecializacaoController, getAllEspecializacoesController } from '../controllers/especializacao.controller';
+import { createEspecializacaoController, getAllEspecializacoesController } from '../controllers/especializacao.Controller';
 
 const router = Router();
 

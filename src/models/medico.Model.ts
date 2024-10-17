@@ -33,7 +33,7 @@ export const initMedicoModel = (sequelize: Sequelize) => {
     },
   }, {
     sequelize,
-    modelName: 'Medico',
+    modelName: 'medico',
   });
 
   return Medico;

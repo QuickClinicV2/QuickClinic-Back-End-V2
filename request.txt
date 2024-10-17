@@ -1,0 +1,185 @@
+# arquivo JSON com requisições para o Insomnia
+insomnia_requests = [
+    {
+        "name": "Get Agendamentos Viagens",
+        "method": "GET",
+        "url": "http://localhost:5000/api/agendamentos-viagens"
+    },
+    {
+        "name": "Create Agendamento Viagens",
+        "method": "POST",
+        "url": "http://localhost:5000/api/agendamento-viagens",
+        "body": {
+            "consulta": "Viagem para consulta médica",
+            "nomePaciente": "Maria Silva",
+            "status": "confirmado",
+            "idade": 45,
+            "dataAgendamento": "2024-10-25T09:00:00Z",
+            "descricao": "Viagem para consulta especializada em cardiologia",
+            "tipoCarro": "SUV",
+            "nomeMotorista": "Carlos Souza",
+            "cidadeDestino": "São Paulo",
+            "tipoConsulta": "Cardiologia",
+            "userId": 2
+        }
+    },
+    {
+        "name": "Update Agendamento Viagens by ID",
+        "method": "PUT",
+        "url": "http://localhost:5000/api/agendamento-viagens/1",
+        "body": {
+            "consulta": "Viagem para consulta médica",
+            "nomePaciente": "Maria Silva",
+            "status": "confirmado",
+            "idade": 45,
+            "dataAgendamento": "2024-10-25T09:00:00Z",
+            "descricao": "Viagem para consulta especializada em cardiologia",
+            "tipoCarro": "SUV",
+            "nomeMotorista": "Carlos Souza",
+            "cidadeDestino": "São Paulo",
+            "tipoConsulta": "Cardiologia",
+            "userId": 2
+        }
+    },
+    {
+        "name": "Get Agendamento by ID",
+        "method": "GET",
+        "url": "http://localhost:5000/api/agendamento/1"
+    },
+    {
+        "name": "Create Agendamento",
+        "method": "POST",
+        "url": "http://localhost:5000/api/agendamento/1",
+        "body": {
+            "consulta": "Consulta de Rotina",
+            "nomePaciente": "Edson Almeida",
+            "status": "agendado",
+            "idade": 32,
+            "dataAgendamento": "2024-10-20T10:00:00Z",
+            "descricao": "Consulta anual de saúde",
+            "userId": 3
+        }
+    },
+    {
+        "name": "Update Agendamento",
+        "method": "PUT",
+        "url": "http://localhost:5000/api/agendamento",
+        "body": {
+            "consulta": "Consulta de Rotina",
+            "nomePaciente": "Edson Almeida",
+            "status": "agendado",
+            "idade": 32,
+            "dataAgendamento": "2024-10-20T10:00:00Z",
+            "descricao": "Consulta anual de saúde",
+            "userId": 3
+        }
+    },
+    {
+        "name": "Update Especializacoes",
+        "method": "PUT",
+        "url": "http://localhost:5000/api/especializacoes",
+        "body": {
+            "nome": "Dr. João Carlos",
+            "email": "joao.carlos@exemplo.com",
+            "cpf": "23493829886",
+            "crm": "12345673",
+            "telefoneContato": "3276872368"
+        }
+    },
+    {
+        "name": "Get Especializacoes",
+        "method": "GET",
+        "url": "http://localhost:5000/api/especializacoes"
+    },
+    {
+        "name": "Create Especializacao",
+        "method": "POST",
+        "url": "http://localhost:5000/api/especializacao",
+        "body": {
+            "nome": "Cardiologia"
+        }
+    },
+    {
+        "name": "Get UBSs",
+        "method": "GET",
+        "url": "http://localhost:5000/api/ubss"
+    },
+    {
+        "name": "Create UBS",
+        "method": "POST",
+        "url": "http://localhost:5000/api/ubs",
+        "body": {
+            "nome": "UBS Dr. Mariano Coelho",
+            "localizacao": "https://www.google.com/maps/dir/R.+S%C3%ADtio+Casa+Velha,+Cerro+Cor%C3%A1+-+RN,+59395-000/UBS+Dr+Mariano+Coelho,+Maternidade+-+R.+Gracindo+Deitado,+249+-+Centro,+Cerro+Cor%C3%A1+-+RN,+59395-000/@-6.0415011,-36.390743,14z/data=!3m1!4b1!4m14!4m13!1m5!1m1!1s0x7b1c0d37b148bc5:0x8d677fa06d099e4a!2m2!1d-36.347594!2d-6.0287309!1m5!1m1!1s0x7b1c6cc862326e9:0xc0de141b7b4e39b6!2m2!1d-36.352263!2d-6.0500697!3e0?entry=ttu&g_ep=EgoyMDI0MTAwOS4wIKXMDSoASAFQAw%3D%3D",
+            "codigo": "23493634",
+            "responsavelTecnico": "João Silva"
+        }
+    },
+    {
+        "name": "Update UBS by ID",
+        "method": "PUT",
+        "url": "http://localhost:5000/api/ubs/1",
+        "body": {
+            "nome": "UBS Dr. Mariano Coelho",
+            "localizacao": "https://www.google.com/maps/dir/R.+S%C3%ADtio+Casa+Velha,+Cerro+Cor%C3%A1+-+RN,+59395-000/UBS+Dr+Mariano+Coelho,+Maternidade+-+R.+Gracindo+Deitado,+249+-+Centro,+Cerro+Cor%C3%A1+-+RN,+59395-000/@-6.0415011,-36.390743,14z/data=!3m1!4b1!4m14!4m13!1m5!1m1!1s0x7b1c0d37b148bc5:0x8d677fa06d099e4a!2m2!1d-36.347594!2d-6.0287309!1m5!1m1!1s0x7b1c6cc862326e9:0xc0de141b7b4e39b6!2m2!1d-36.352263!2d-6.0500697!3e0?entry=ttu&g_ep=EgoyMDI0MTAwOS4wIKXMDSoASAFQAw%3D%3D",
+            "codigo": "2349363334",
+            "responsavelTecnico": "João Silva"
+        }
+    },
+    {
+        "name": "Delete UBS by ID",
+        "method": "DELETE",
+        "url": "http://localhost:5000/api/ubs/1"
+    },
+    {
+        "name": "Get Medicos",
+        "method": "GET",
+        "url": "http://localhost:5000/api/medicos"
+    },
+    {
+        "name": "Create Medico",
+        "method": "POST",
+        "url": "http://localhost:5000/api/medico",
+        "body": {
+            "nome": "Dr. Lucas Ferreira",
+            "email": "lucas.ferreira@exemplo.com",
+            "cpf": "23476846876",
+            "crm": "12342225673",
+            "telefoneContato": "32768722236"
+        }
+    },
+    {
+        "name": "Update Medico by ID",
+        "method": "PUT",
+        "url": "http://localhost:5000/api/medico/1",
+        "body": {
+            "nome": "Dr. João Carlos",
+            "email": "joao.carlos@exemplo.com",
+            "cpf": "23493829886",
+            "crm": "12345673",
+            "telefoneContato": "3276872368"
+        }
+    },
+    {
+        "name": "Delete Medico by ID",
+        "method": "DELETE",
+        "url": "http://localhost:5000/api/medico/1"
+    },
+    {
+        "name": "Get Usuarios",
+        "method": "GET",
+        "url": "http://localhost:5000/api/usuarios"
+    },
+
+    {
+        "name": "Create Usuario",
+        "method": "POST",
+        "url": "http://localhost:5000/api/usuario",
+        "body": {
+            "nome": "Ana Clara",
+            "email": "ana.clara@exemplo.com",
+            "cpf": "23493622234",
+            "numeroSus": "28793222718",
+            "dataNascimento":
+	}
+]

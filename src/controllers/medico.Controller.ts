@@ -6,7 +6,7 @@ import {
   updateMedicoService, 
   deleteMedicoService, 
   associateEspecializacaoService 
-} from '../services/medico.service';
+} from '../services/medico.Service';
 import { validationResult } from 'express-validator';
 
 // Controlador para criar um médico

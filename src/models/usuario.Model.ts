@@ -1,26 +1,28 @@
 import { Model, DataTypes, Sequelize } from 'sequelize';
 
 // Define the User model
-class User extends Model {
+class Usuario extends Model {
     public id!: number;
-    public name!: string;
+    public nome!: string; // Campo alterado para "nome"
     public email!: string;
     public cpf!: string;
+    public numeroSus!: string; // Campo "Número do SUS" em português
+    public dataNascimento!: Date; // Campo "Data de Nascimento" em português
     public password!: string;
     public readonly createdAt!: Date;
     public readonly updatedAt!: Date;
 }
 
 // Function to initialize the User model
-export const initUserModel = (sequelize: Sequelize) => {
-    User.init(
+export const initUsuarioModel = (sequelize: Sequelize) => {
+    Usuario.init(
         {
             id: {
                 type: DataTypes.INTEGER.UNSIGNED,
                 autoIncrement: true,
                 primaryKey: true,
             },
-            name: {
+            nome: {
                 type: DataTypes.STRING(255),
                 allowNull: false,
             },
@@ -36,6 +38,15 @@ export const initUserModel = (sequelize: Sequelize) => {
                 type: DataTypes.STRING(14),
                 allowNull: false,
                 unique: true,
+            },
+            numeroSus: {
+                type: DataTypes.STRING(18),
+                allowNull: false,
+                unique: true,
+            },
+            dataNascimento: {
+                type: DataTypes.DATE,
+                allowNull: false,
             },
             password: {
                 type: DataTypes.STRING(255),
@@ -54,10 +65,10 @@ export const initUserModel = (sequelize: Sequelize) => {
         },
         {
             sequelize,
-            tableName: 'users',
+            tableName: 'usuarios',
             timestamps: true,
         }
     );
 };
 
-export default User;
+export default Usuario;
