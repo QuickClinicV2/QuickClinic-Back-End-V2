@@ -180,6 +180,7 @@ insomnia_requests = [
             "email": "ana.clara@exemplo.com",
             "cpf": "23493622234",
             "numeroSus": "28793222718",
-            "dataNascimento":
+            "dataNascimento": ""
 	}
+}
 ]
