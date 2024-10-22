@@ -1,4 +1,5 @@
 import { Sequelize, Model, DataTypes } from 'sequelize';
+import { v4 as uuidv4 } from 'uuid';
 
 export const initMedicoModel = (sequelize: Sequelize) => {
   class Medico extends Model {
@@ -11,6 +12,11 @@ export const initMedicoModel = (sequelize: Sequelize) => {
   }
 
   Medico.init({
+    id: {
+      type: DataTypes.UUID,
+      defaultValue: uuidv4,
+      primaryKey: true,
+    },
     nome: {
       type: DataTypes.STRING,
       allowNull: false,

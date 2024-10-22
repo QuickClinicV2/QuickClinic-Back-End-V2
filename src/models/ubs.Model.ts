@@ -1,4 +1,5 @@
 import { Model, DataTypes, Sequelize } from 'sequelize';
+import { v4 as uuidv4 } from 'uuid';
 
 // Define the UBS model
 class Ubs extends Model {
@@ -16,10 +17,10 @@ export const initUbsModel = (sequelize: Sequelize) => {
     Ubs.init(
         {
             id: {
-                type: DataTypes.INTEGER.UNSIGNED,
-                autoIncrement: true,
+                type: DataTypes.UUID,
+                defaultValue: uuidv4,
                 primaryKey: true,
-            },
+              },
             nome: {
                 type: DataTypes.STRING(255),
                 allowNull: false,

@@ -24,7 +24,7 @@ export const getAgendamentoViagembyIdService = async (id: number) => {
     return agendamentoViagem;
 };
 
-export const updateAgendamentoViagemService = async (id: number, dados: any) => {
+export const updateAgendamentoViagemService = async (id: string, dados: any) => {
     const agendamentoViagem = await AgendamentoViagens.findByPk(id);
     if (!agendamentoViagem) {
         throw new Error('Agendamento de viagem não encontrado');
@@ -32,7 +32,7 @@ export const updateAgendamentoViagemService = async (id: number, dados: any) => 
     return await agendamentoViagem.update(dados);
 };
 
-export const deleteAgendamentoViagemService = async (id: number) => {
+export const deleteAgendamentoViagemService = async (id: string) => {
     const agendamentoViagem = await AgendamentoViagens.findByPk(id);
     if (!agendamentoViagem) {
         throw new Error('Agendamento de viagem não encontrado');

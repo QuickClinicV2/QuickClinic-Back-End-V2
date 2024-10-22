@@ -1,5 +1,6 @@
 import { Model, DataTypes, Sequelize } from 'sequelize';
 import User from './usuario.Model';  // Relacionamento com o modelo de Usuário
+import { v4 as uuidv4 } from 'uuid';
 
 class Agendamento extends Model {
     public id!: number;
@@ -18,10 +19,10 @@ export const initAgendamentoModel = (sequelize: Sequelize) => {
     Agendamento.init(
         {
             id: {
-                type: DataTypes.INTEGER.UNSIGNED,
-                autoIncrement: true,
+                type: DataTypes.UUID,
+                defaultValue: uuidv4,
                 primaryKey: true,
-            },
+              },
             consulta: {
                 type: DataTypes.STRING(255),
                 allowNull: false,
@@ -58,7 +59,7 @@ export const initAgendamentoModel = (sequelize: Sequelize) => {
                 defaultValue: DataTypes.NOW,
             },
             userId: {
-                type: DataTypes.INTEGER.UNSIGNED,
+                type: DataTypes.UUID,
                 allowNull: false,
                 references: {
                     model: User, // Relaciona com o modelo User

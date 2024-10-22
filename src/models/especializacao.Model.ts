@@ -1,5 +1,6 @@
 import { Sequelize, Model, DataTypes } from 'sequelize';
 import initMedicoModel from './medico.Model'; // Importa a função de inicialização do modelo Medico
+import { v4 as uuidv4 } from 'uuid';
 
 export const initEspecializacaoModel = (sequelize: Sequelize) => {
     class Especializacao extends Model {
@@ -8,6 +9,11 @@ export const initEspecializacaoModel = (sequelize: Sequelize) => {
     }
 
     Especializacao.init({
+        id: {
+            type: DataTypes.UUID,
+            defaultValue: uuidv4,
+            primaryKey: true,
+          },
         nome: {
             type: DataTypes.STRING,
             allowNull: false,

@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "typeRoots": ["./node_modules/@types", "./@types"],
     "target": "ES2020",
     "module": "commonjs",
     "strict": true,
@@ -8,6 +9,6 @@
     "forceConsistentCasingInFileNames": true,
     "outDir": "./dist"
   },
-  "include": ["src/**/*"],
+  "include": ["src/**/*", "@types/**/*"],
   "exclude": ["node_modules"]
 }

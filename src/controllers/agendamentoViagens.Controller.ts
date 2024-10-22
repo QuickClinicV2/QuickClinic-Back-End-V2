@@ -36,18 +36,20 @@ export const getAgendamentoViagemByIdController = async (req: Request, res: Resp
 
 export const updateAgendamentoViagemController = async (req: Request, res: Response): Promise<void> => {
     try {
-        const agendamentoViagem = await updateAgendamentoViagemService(parseInt(req.params.id), req.body);
+        // Use diretamente req.params.id como UUID
+        const agendamentoViagem = await updateAgendamentoViagemService(req.params.id, req.body);
         res.status(200).json(agendamentoViagem);
     } catch (error: unknown) {
-        res.status(400).json({ erro: error instanceof Error ? error.message : 'Erro desconhecido ao atualizar agendamento' });
+        res.status(400).json({ erro: error instanceof Error ? error.message : 'Erro desconhecido ao atualizar agendamento de viagem' });
     }
 };
 
 export const deleteAgendamentoViagemController = async (req: Request, res: Response): Promise<void> => {
     try {
-        const mensagem = await deleteAgendamentoViagemService(parseInt(req.params.id));
+        // Use diretamente req.params.id como UUID
+        const mensagem = await deleteAgendamentoViagemService(req.params.id);
         res.status(200).json({ mensagem });
     } catch (error: unknown) {
-        res.status(400).json({ erro: error instanceof Error ? error.message : 'Erro desconhecido ao remover agendamento' });
+        res.status(400).json({ erro: error instanceof Error ? error.message : 'Erro desconhecido ao remover agendamento de viagem' });
     }
 };
